@@ -9,8 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            abiFilters 'armeabi-v7a' //,'x86', 'x86_64', 'armeabi', 'arm64-v8a'
+//        ndk {
+//            abiFilters 'armeabi-v7a' //,'x86', 'x86_64', 'armeabi', 'arm64-v8a'
+//        }
+        ndk{
+            abiFilters 'arm64-v8a'
         }
     }
 
@@ -38,4 +41,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(path: ':YSQFace')
     implementation project(path: ':MTCNNFace')
+    implementation project(path: ':YSQTengine')
 }
