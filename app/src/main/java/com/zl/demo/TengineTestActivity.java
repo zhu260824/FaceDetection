@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zl.tengine.TengineTest;
 
 import java.io.FileNotFoundException;
 
@@ -40,8 +39,8 @@ public class TengineTestActivity extends Activity {
         //try init cash reopen finally click
 
 
-        if (TengineTest.TengineWrapperInit()>0)
-            tv.setText("Exit,try again");
+//        if (TengineTest.TengineWrapperInit()>0)
+//            tv.setText("Exit,try again");
 
 
 
@@ -82,12 +81,12 @@ public class TengineTestActivity extends Activity {
 
 
                 tv.setText("run App...");
-                if(TengineTest.RunMobilenet(bitmap)>0)
-                    tv.setText("run App error !!!!!!!");
-                else {
-                    tv.setText(TengineTest.TengineWrapperGetTop1());
-
-                }
+//                if(TengineTest.RunMobilenet(bitmap)>0)
+//                    tv.setText("run App error !!!!!!!");
+//                else {
+//                    tv.setText(TengineTest.TengineWrapperGetTop1());
+//
+//                }
 
 
                 ImageView imageView = (ImageView) findViewById(R.id.image);

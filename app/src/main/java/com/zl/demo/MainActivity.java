@@ -4,13 +4,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zl.face.MTCNN;
-import com.zl.face.MTFaceInfo;
 import com.zl.face.YSQFaceInfo;
 import com.zl.face.YSQFaceUtil;
 
@@ -20,14 +17,12 @@ import org.opencv.core.MatOfRect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
-import java.io.IOException;
-
 
 public class MainActivity extends AppCompatActivity {
     private ImageView ivT1, ivT2;
     private Button btnT1, btnT2, btnAll;
     private TextView tvT1, tvT2, tvAll;
-    private MTCNN mtcnn;
+//    private MTCNN mtcnn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +39,20 @@ public class MainActivity extends AppCompatActivity {
         ivT1.post(() -> ivT1.setImageBitmap(ImageUtil.getBitmapByAssets(ivT1.getContext(), "test.jpg")));
         ivT2.post(() -> ivT2.setImageBitmap(ImageUtil.getBitmapByAssets(ivT2.getContext(), "test2.jpg")));
         btnT1.setOnClickListener(v -> {
-            String msg = detectMTCNN(v.getContext(), "test.jpg", ivT1);
+            String msg = detect(v.getContext(), "test.jpg", ivT1);
             tvT1.setText(msg);
         });
         btnT2.setOnClickListener(v -> {
-            String msg = detectMTCNN(v.getContext(), "test2.jpg", ivT2);
+            String msg = detect(v.getContext(), "test2.jpg", ivT2);
             tvT2.setText(msg);
         });
         YSQFaceUtil.init(MainActivity.this);
-        mtcnn = new MTCNN();
-        try {
-            mtcnn.init(MainActivity.this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        mtcnn = new MTCNN();
+//        try {
+//            mtcnn.init(MainActivity.this);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private String detect(Context mContext, String assetsPath, ImageView imageView) {
@@ -91,13 +86,13 @@ public class MainActivity extends AppCompatActivity {
         Scalar FACE_RECT_COLOR = new Scalar(255.0, 0.0, 0.0);
         int FACE_RECT_THICKNESS = 3;
         long startTime = System.currentTimeMillis();
-        MTFaceInfo[] faces = mtcnn.detect(bitmap);
-        msg = msg + "face num = " + faces.length + "\n";
+//        MTFaceInfo[] faces = mtcnn.detect(bitmap);
+//        msg = msg + "face num = " + faces.length + "\n";
         msg = msg + "detectTime = " + (System.currentTimeMillis() - startTime) + "ms";
-        for (MTFaceInfo face : faces) {
-            Log.i("MTCNN",face.toString());
-            Imgproc.rectangle(mat, RectUtil.androidRect2OpencvRect(face.getRect()), FACE_RECT_COLOR, FACE_RECT_THICKNESS);
-        }
+//        for (MTFaceInfo face : faces) {
+//            Log.i("MTCNN",face.toString());
+//            Imgproc.rectangle(mat, RectUtil.androidRect2OpencvRect(face.getRect()), FACE_RECT_COLOR, FACE_RECT_THICKNESS);
+//        }
         Utils.matToBitmap(mat, cb);
         imageView.post(() -> imageView.setImageBitmap(cb));
         return msg;
