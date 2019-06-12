@@ -1,1 +1,1 @@
-include ':app', ':YSQFace', ':MTCNNLibrary', ':MTCNNFace', ':YSQTengine'
+include ':app', ':YSQFace', ':MTCNNLibrary', ':MTCNNFace', ':YSQTengine', ':HyperLandmark'

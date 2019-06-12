@@ -8,14 +8,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zl.face.YSQFaceInfo;
-import com.zl.face.YSQFaceUtil;
-
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -46,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             String msg = detect(v.getContext(), "test2.jpg", ivT2);
             tvT2.setText(msg);
         });
-        YSQFaceUtil.init(MainActivity.this);
+//        YSQFaceUtil.init(MainActivity.this);
 //        mtcnn = new MTCNN();
 //        try {
 //            mtcnn.init(MainActivity.this);
@@ -65,12 +61,12 @@ public class MainActivity extends AppCompatActivity {
         Scalar FACE_RECT_COLOR = new Scalar(255.0, 0.0, 0.0);
         int FACE_RECT_THICKNESS = 3;
         long startTime = System.currentTimeMillis();
-        YSQFaceInfo[] faces = YSQFaceUtil.detectCNN(mat.nativeObj);
+       /* YSQFaceInfo[] faces = YSQFaceUtil.detectCNN(mat.nativeObj);
         msg = msg + "face num = " + faces.length + "\n";
         msg = msg + "detectTime = " + (System.currentTimeMillis() - startTime) + "ms";
         for (YSQFaceInfo faceInfo : faces) {
             Imgproc.rectangle(mat, RectUtil.androidRect2OpencvRect(faceInfo.getFaceRect()), FACE_RECT_COLOR, FACE_RECT_THICKNESS);
-        }
+        }*/
         Utils.matToBitmap(mat, cb);
         imageView.post(() -> imageView.setImageBitmap(cb));
         return msg;
